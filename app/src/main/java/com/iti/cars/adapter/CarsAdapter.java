@@ -17,7 +17,7 @@ import com.iti.cars.model.Car;
 
 import java.util.List;
 
-public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder>{
+public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder> {
 
 
     private final Context context;
@@ -40,22 +40,22 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.carBrand.setText(cars.get(position).getBrand());
 
-        if(cars.get(position).getUsed()) {
+        if (cars.get(position).getIsUsed()) {
             holder.carIsUsed.setText(R.string.yes);
         } else {
             holder.carIsUsed.setText(R.string.no);
         }
 
-        if(cars.get(position).getImageUrl() == null) {
-            holder.carImage.setImageResource(R.drawable.ic_launcher_background);
+        if (cars.get(position).getImageUrl() == null) {
+            holder.carImage.setImageResource(R.drawable.default_car);
         } else {
             Glide.with(context).load(cars.get(position).getImageUrl())
-                    .placeholder(R.drawable.ic_launcher_background)
-                    .error(R.drawable.ic_launcher_foreground)
+                    .placeholder(R.drawable.default_car)
+                    .error(R.drawable.default_car)
                     .into(holder.carImage);
         }
 
-        if(cars.get(position).getConstractionYear() == null) {
+        if (cars.get(position).getConstractionYear() == null) {
             holder.carConstructionYearLinearLayout.setVisibility(View.GONE);
         } else {
             holder.carConstructionYear.setText(cars.get(position).getConstractionYear());

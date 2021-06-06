@@ -5,10 +5,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.iti.cars.adapter.CarsAdapter;
 import com.iti.cars.model.Car;
+import com.iti.cars.model.CarResponse;
 import com.iti.cars.utilities.Network;
 import com.iti.cars.utilities.OnResponseRetrofit;
 
@@ -25,9 +27,9 @@ public class MainActivity extends AppCompatActivity implements OnResponseRetrofi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Call<List<Car>> cars = Network.getJsonQ().getCars(1);
+        Call<CarResponse> call = Network.getJsonQ().getCars(1);
 
-        Network.parsJson(cars, this);
+        Network.parsJson(call, this);
 
         recyclerView = findViewById(R.id.cars_recyclerview);
         recyclerView.setHasFixedSize(false);

@@ -4,9 +4,9 @@ public class Car {
 
     private int id;
     private String brand;
-    private String ConstractionYear;
+    private String constractionYear;
     private String imageUrl;
-    private Boolean IsUsed;
+    private Boolean isUsed;
 
     public int getId() {
         return id;
@@ -25,11 +25,11 @@ public class Car {
     }
 
     public String getConstractionYear() {
-        return ConstractionYear;
+        return constractionYear;
     }
 
     public void setConstractionYear(String constractionYear) {
-        ConstractionYear = constractionYear;
+        this.constractionYear = constractionYear;
     }
 
     public String getImageUrl() {
@@ -40,11 +40,11 @@ public class Car {
         this.imageUrl = imageUrl;
     }
 
-    public Boolean getUsed() {
-        return IsUsed;
+    public Boolean getIsUsed() {
+        return isUsed;
     }
 
-    public void setUsed(Boolean used) {
-        IsUsed = used;
+    public void setIsUsed(Boolean used) {
+        isUsed = used;
     }
 }

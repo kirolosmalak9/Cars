@@ -1,8 +1,11 @@
 package com.iti.cars.utilities;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.iti.cars.model.Car;
+import com.iti.cars.model.CarResponse;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -30,20 +33,22 @@ public class Network {
         return jsonQ;
     }
 
-    public static void parsJson(Call<List<Car>> cars,
-                                    OnResponseRetrofit onResponseRetrofit) {
+    public static void parsJson(Call<CarResponse> cars,
+                                OnResponseRetrofit onResponseRetrofit) {
 
-        cars.enqueue(new Callback<List<Car>>() {
+        cars.enqueue(new Callback<CarResponse>() {
 
             @Override
-            public void onResponse(@NotNull Call<List<Car>> call,
-                                   @NotNull Response<List<Car>> response) {
+            public void onResponse(@NotNull Call<CarResponse> call,
+                                   @NotNull Response<CarResponse> response) {
 
-                List<Car> cars  = response.body();
-                onResponseRetrofit.onResponse(cars);
+                CarResponse cars = response.body();
+                Log.i("TAG", "onResponse: " + cars.getCars());
+                onResponseRetrofit.onResponse(cars.getCars());
             }
+
             @Override
-            public void onFailure(@NotNull Call<List<Car>> call, @NotNull Throwable t) {
+            public void onFailure(@NotNull Call<CarResponse> call, @NotNull Throwable t) {
                 t.printStackTrace();
                 onResponseRetrofit.onFail();
             }
