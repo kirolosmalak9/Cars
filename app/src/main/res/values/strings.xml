@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Cars</string>
+    <string name="car_image">car image</string>
+    <string name="brand">Brand :</string>
+    <string name="used">Used :</string>
+    <string name="construction_year">Construction year :</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+</resources>
