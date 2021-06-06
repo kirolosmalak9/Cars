@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.iti.cars.R;
 import com.iti.cars.model.Car;
+import com.iti.cars.utilities.AddNewData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder> {
@@ -22,10 +24,12 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder> {
 
     private final Context context;
     private List<Car> cars;
+    private final AddNewData addNewData;
 
-    public CarsAdapter(Context context, List<Car> cars) {
+    public CarsAdapter(Context context, AddNewData addNewData) {
         this.context = context;
-        this.cars = cars;
+        this.addNewData = addNewData;
+        cars = new ArrayList<>();
     }
 
     @NonNull
@@ -38,6 +42,11 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+        if (position == getItemCount() - 1) {
+            this.addNewData.getCars();
+        }
+
         holder.carBrand.setText(cars.get(position).getBrand());
 
         if (cars.get(position).getIsUsed()) {
@@ -63,9 +72,25 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder> {
 
     }
 
+    public void addCars(List<Car> cars) {
+        this.cars.addAll(cars);
+        ;
+        notifyDataSetChanged();
+    }
+
+    public void removeAllCars() {
+        this.cars.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return cars.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

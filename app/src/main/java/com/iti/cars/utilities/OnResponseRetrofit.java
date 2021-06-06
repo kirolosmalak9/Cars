@@ -8,5 +8,5 @@ import java.util.List;
 public interface OnResponseRetrofit {
     void onResponse(List<Car> cars);
 
-    void onFail();
+    void onFail(String text);
 }

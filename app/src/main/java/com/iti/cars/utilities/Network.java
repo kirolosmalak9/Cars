@@ -1,15 +1,12 @@
 package com.iti.cars.utilities;
 
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.iti.cars.model.Car;
 import com.iti.cars.model.CarResponse;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,14 +40,19 @@ public class Network {
                                    @NotNull Response<CarResponse> response) {
 
                 CarResponse cars = response.body();
-                Log.i("TAG", "onResponse: " + cars.getCars());
-                onResponseRetrofit.onResponse(cars.getCars());
+                if (cars != null) {
+                    if (cars.getCars() != null) {
+                        onResponseRetrofit.onResponse(cars.getCars());
+                    }
+                } else {
+                    onResponseRetrofit.onFail(null);
+                }
             }
 
             @Override
             public void onFailure(@NotNull Call<CarResponse> call, @NotNull Throwable t) {
                 t.printStackTrace();
-                onResponseRetrofit.onFail();
+                onResponseRetrofit.onFail("Fail");
             }
         });
     }
