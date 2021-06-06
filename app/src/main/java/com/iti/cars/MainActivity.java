@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements OnResponseRetrofi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Call<List<Car>> cars = Network.getJsonQ().getCars("1");
+        Call<List<Car>> cars = Network.getJsonQ().getCars(1);
 
         Network.parsJson(cars, this);
 

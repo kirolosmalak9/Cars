@@ -12,5 +12,5 @@ import retrofit2.http.Query;
 public interface JsonQ {
 
     @GET("api/v1/cars/")
-    Call<List<Car>> getCars(@Query("page") String page);
+    Call<List<Car>> getCars(@Query("page") int page);
 }
